@@ -49,8 +49,6 @@ const CandidateSearch = () => {
   useEffect(() => {
     searchAllUsers();
     searchUser(candidate.login || '');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-
   }, []);
   //https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
 
