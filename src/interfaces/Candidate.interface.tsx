@@ -1,6 +1,6 @@
 // DO: Create an interface for the Candidate objects returned by the API
-interface Candidate {
-    id: number;
+export interface Candidate {
+    id: number | null;
     login: string | null;
     name: string | null;
     html_url: string | null;
@@ -11,4 +11,3 @@ interface Candidate {
     location: string | null;
 }
 
-export default Candidate;
