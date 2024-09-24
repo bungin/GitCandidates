@@ -26,7 +26,7 @@ const CandCard = ({ candidate, makeDecision }: CandCardProps) => {
             <div className="">
                 <h2>{candidate.login}</h2>
                 <h2>{candidate.name}</h2>
-                <p>{candidate.bio}</p>
+                {!candidate.bio ? <p>No bio available</p> : `${candidate.bio}`}
                 <a href={`${candidate.html_url}`} target="_blank" rel="noreferrer">View Profile</a>
             </div>
             <div className="cardButtons">

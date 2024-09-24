@@ -33,19 +33,12 @@ const CandidateSearch = () => {
       setIndex(0);
       searchAllUsers();
     }
-    // if isselected is true, add the candidate to the selectedCandidates array
-    // get local stoarage then
-    // after add save to local store
-    // increment index (moves to next candidate)
+  };
 
-    // if false move to next one
-    //move to next index
-  }
-
-  const searchUser = useCallback(async (login: string) => {
+  const searchUser = async (login: string) => {
     const data = await searchGithubUser(login);
     setCandidate(data);
-  });
+  };
 
   const searchAllUsers = useCallback(async () => {
     const data = await searchGithub();
@@ -53,14 +46,15 @@ const CandidateSearch = () => {
     await searchUser(data[index].login);
   }, []);
 
-
   useEffect(() => {
     searchAllUsers();
     searchUser(candidate.login || '');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
+  //https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
 
 
-  //console log user to check for random user
 
   return (<>
   <h1>CandidateSearch</h1>
