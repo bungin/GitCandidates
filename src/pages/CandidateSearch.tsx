@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo} from 'react';
+import { useState, useEffect, useCallback} from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 import { Candidate } from '../interfaces/Candidate.interface';
 import CandCard from '../components/CandCard';
