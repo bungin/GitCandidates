@@ -16,20 +16,20 @@ const searchGithub = async () => {
       throw new Error('invalid API response, check the network tab');
     }
     // console.log('Data:', data);
-    return data;
+    return data.filter((user: any) => user.login);
   } catch (err) {
     console.log('an error occurred', err);
     return [];
   }
 };
-
+//find way to handle 404, no user
 const searchGithubUser = async (username: string) => {
   try {
     const response = await fetch(`https://api.github.com/users/${username}`, {
       headers: {
         Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
       },
-    });
+    }); 
     const data = await response.json();
     if (!response.ok) {
       throw new Error('invalid API response, check the network tab');

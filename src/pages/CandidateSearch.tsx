@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo} from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 import { Candidate } from '../interfaces/Candidate.interface';
 import CandCard from '../components/CandCard';
@@ -20,37 +20,39 @@ const CandidateSearch = () => {
 
   
   const [index, setIndex] = useState<number>(0);
+  
 
   function makeDecision(isSelected: boolean) {
     if (isSelected) {
       const currentSelection = JSON.parse(localStorage.getItem('selectedCandidates') || '[]');
       currentSelection.push((candidate) as Candidate);
+      localStorage.setItem('selectedCandidates', JSON.stringify(currentSelection));
     }
     if (index < results.length - 1) {
       setIndex(index + 1);
       searchUser(results[index + 1].login || '');
+
     } else {
       setIndex(0);
       searchAllUsers();
-    }
+    }//check for 404 response then refetch or index++
   };
 
-  const searchUser = async (login: string) => {
+  const searchUser = useCallback(async (login: string) => {
     const data = await searchGithubUser(login);
     setCandidate(data);
-  };
+  }, []);
 
   const searchAllUsers = useCallback(async () => {
     const data = await searchGithub();
+    console.log(data, index);
     setResults(data);
     await searchUser(data[index].login);
   }, []);
 
   useEffect(() => {
     searchAllUsers();
-    searchUser(candidate.login || '');
   }, []);
-  //https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
 
 
 
