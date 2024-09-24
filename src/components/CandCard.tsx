@@ -24,6 +24,7 @@ const CandCard = ({ candidate, makeDecision }: CandCardProps) => {
                     style={{ width: '300px' }} />
             )}
             <div className="">
+                <h2>{candidate.login}</h2>
                 <h2>{candidate.name}</h2>
                 <p>{candidate.bio}</p>
                 <a href={`${candidate.html_url}`} target="_blank" rel="noreferrer">View Profile</a>

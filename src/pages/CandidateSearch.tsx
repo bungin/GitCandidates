@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 import { Candidate } from '../interfaces/Candidate.interface';
+import CandCard from '../components/CandCard';
 
 
 const CandidateSearch = () => {
@@ -23,7 +24,14 @@ const CandidateSearch = () => {
   function makeDecision(isSelected: boolean) {
     if (isSelected) {
       const currentSelection = JSON.parse(localStorage.getItem('selectedCandidates') || '[]');
-      currentSelection.push((candidate)as Candidate);
+      currentSelection.push((candidate) as Candidate);
+    }
+    if (index < results.length - 1) {
+      setIndex(index + 1);
+      searchUser(results[index + 1].login || '');
+    } else {
+      setIndex(0);
+      searchAllUsers();
     }
     // if isselected is true, add the candidate to the selectedCandidates array
     // get local stoarage then
@@ -42,7 +50,7 @@ const CandidateSearch = () => {
   const searchAllUsers = useCallback(async () => {
     const data = await searchGithub();
     setResults(data);
-
+    await searchUser(data[index].login);
   }, []);
 
 
@@ -54,8 +62,10 @@ const CandidateSearch = () => {
 
   //console log user to check for random user
 
-  return (
+  return (<>
   <h1>CandidateSearch</h1>
+  <CandCard candidate={candidate} makeDecision={makeDecision} />
+  </>
 )
 };
 
