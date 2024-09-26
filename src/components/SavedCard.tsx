@@ -6,9 +6,9 @@ interface SavedCardProps {
 }
 
 const SavedCard = ({ candidate }: SavedCardProps) => {
-  return (// probably cant use candidate.blah. will need to pull from local storage.
+  return (
     <>                   
-      <div>
+      <div className="">
         <div>
           {candidate?.avatar_url ? (
             <img
