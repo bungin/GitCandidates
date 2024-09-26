@@ -7,9 +7,9 @@ interface SavedCardProps {
 
 const SavedCard = ({ candidate }: SavedCardProps) => {
   return (
-    <>                   
-      <div className="">
-        <div>
+    <>
+      <tr>
+        <td>
           {candidate?.avatar_url ? (
             <img
               src={`${candidate.avatar_url}`}
@@ -23,18 +23,17 @@ const SavedCard = ({ candidate }: SavedCardProps) => {
               style={{ width: "75px", height: "75px" }}
             />
           )}
-        </div>
-        <div>
+        </td>
+        <td>
           <h2>{candidate.login}</h2>
+        </td>
+        <td>
           <h2>{candidate.name}</h2>
-          <a href={`${candidate.html_url}`} target="_blank" rel="noreferrer">
-            View Profile
-          </a>
-        </div>
-        <div style={{}} >
-        {!candidate.bio ? <p>No bio available</p> : <p>{candidate.bio}</p>}
-        </div>
-      </div>
+        </td>
+        <td>
+          {!candidate.bio ? <p>No bio available</p> : <p>{candidate.bio}</p>}
+        </td>
+      </tr>
     </>
   );
 };
