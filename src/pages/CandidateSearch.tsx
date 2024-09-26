@@ -35,7 +35,7 @@ const CandidateSearch = () => {
     } else {
       setIndex(0);
       searchAllUsers();
-    }//check for 404 response then refetch or index++
+    }
   };
 
   const searchUser = useCallback(async (login: string) => {
