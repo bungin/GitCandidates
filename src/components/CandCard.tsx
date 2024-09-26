@@ -16,7 +16,8 @@ const CandCard = ({ candidate, makeDecision }: CandCardProps) => {
             {candidate?.avatar_url ? (
                 <img
                     src={`${candidate.avatar_url}`}
-                    alt={`${candidate.name} profile picture`} />
+                    alt={`${candidate.name} profile picture`} 
+                    style={{ width: '300px' }}/>
             ) : (
                 <img
                     src={'https://placehold.co/600x400'}

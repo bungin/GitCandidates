@@ -14,13 +14,13 @@ const SavedCard = ({ candidate }: SavedCardProps) => {
             <img
               src={`${candidate.avatar_url}`}
               alt={`${candidate.name} profile picture`}
-              style={{ width: "50px", height: "50px" }}
+              style={{ width: "75px", height: "75px" }}
             />
           ) : (
             <img
               src={"https://placehold.co/75x75"}
               alt={"placeholder profile picture"}
-              style={{ width: "50px", height: "50px" }}
+              style={{ width: "75px", height: "75px" }}
             />
           )}
         </div>
@@ -32,7 +32,7 @@ const SavedCard = ({ candidate }: SavedCardProps) => {
           </a>
         </div>
         <div style={{}} >
-          <p>{candidate.bio} </p>
+        {!candidate.bio ? <p>No bio available</p> : <p>{candidate.bio}</p>}
         </div>
       </div>
     </>

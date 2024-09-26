@@ -1,6 +1,7 @@
 import SavedCard from "../components/SavedCard";
-import '../index.css';
+import { useState, useEffect, useCallback} from 'react';
 import { Candidate } from "../interfaces/Candidate.interface";
+import '../index.css';
 
 //copilot shit for study
 // const sampleCandidate: Candidate = {
@@ -19,14 +20,24 @@ import { Candidate } from "../interfaces/Candidate.interface";
 
 const SavedCandidates = () => {
   
+  const [index, setIndex] = useState<number>(0);
+  const candData = JSON.parse(localStorage.getItem('selectedCandidates') || '[]');
+  console.log(candData)
   
-  
+  const renderSavedCards = () => {
+    return candData.map((candidate: Candidate, index: number) => (
+      <SavedCard key={index} candidate={candidate} />
+      //increment index +1 for each render
+    ));
+  };
+
   return (
     <>
       <h1>Potential Candidates</h1>
-      <SavedCard candidate={????}/>
+      {renderSavedCards()}
     </>
   );
 };
 
 export default SavedCandidates;
+
